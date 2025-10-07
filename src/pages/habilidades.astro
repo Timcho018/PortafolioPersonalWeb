@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/Base.astro';
+---
+
+<BaseLayout title="Habilidades">
+  <link rel="stylesheet" href="/src/styles/habilidades.css" />
+
+  <!-- Loader -->
+  <div id="modular-loader">
+    <div class="letter-grid" id="letter-grid"></div>
+  </div>
+
+  <!-- Fondo de partículas (contenedor) -->
+  <div id="particles-js"></div>
+
+  <!-- Cursor personalizado -->
+  <div id="cursorNeb" class="cursor-dot"></div>
+  <div id="cursorNebTrail" class="cursor-trail"></div>
+
+  <div class="content-container">
+    <main class="main-habilidades">
+      <div class="wrap">
+        <h2 class="title gradient-title">Habilidades</h2>
+        <div class="content-grid">
+          <div>
+            <h3 class="subtitle">Técnicas</h3>
+            <div class="skill-block">
+              <div class="skill-title">HTML</div>
+              <div class="progress"><div class="progress-bar bg-primary" data-value="60"></div></div>
+            </div>
+            <div class="skill-block">
+              <div class="skill-title">CSS</div>
+              <div class="progress"><div class="progress-bar bg-info" data-value="55"></div></div>
+            </div>
+            <div class="skill-block">
+              <div class="skill-title">JS</div>
+              <div class="progress"><div class="progress-bar bg-warning" data-value="30"></div></div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="subtitle subtitle-center">Habilidades Blandas</h3>
+            <div class="soft-skill-grid">
+              <div class="card soft-skill-card bg-dark text-light border-0 shadow hover-card">
+                <div class="card-body text-center">
+                  <i class="fa-solid fa-people-group fa-2x mb-3 text-primary"></i>
+                  <h5 class="card-title">Trabajo en equipo</h5>
+                  <p class="card-text">Me gusta colaborar y crear soluciones conjuntas.</p>
+                </div>
+              </div>
+              <div class="card soft-skill-card bg-dark text-light border-0 shadow hover-card">
+                <div class="card-body text-center">
+                  <i class="fa-solid fa-lightbulb fa-2x mb-3 text-warning"></i>
+                  <h5 class="card-title">Creatividad</h5>
+                  <p class="card-text">Siempre busco nuevas ideas y formas de mejorar.</p>
+                </div>
+              </div>
+              <div class="card soft-skill-card bg-dark text-light border-0 shadow hover-card">
+                <div class="card-body text-center">
+                  <i class="fa-solid fa-comments fa-2x mb-3 text-success"></i>
+                  <h5 class="card-title">Comunicación</h5>
+                  <p class="card-text">Expreso ideas de forma clara y efectiva.</p>
+                </div>
+              </div>
+              <div class="card soft-skill-card bg-dark text-light border-0 shadow hover-card">
+                <div class="card-body text-center">
+                  <i class="fa-solid fa-brain fa-2x mb-3 text-info"></i>
+                  <h5 class="card-title">Pensamiento crítico</h5>
+                  <p class="card-text">Analizo problemas y busco soluciones efectivas.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- === SCRIPTS INLINE (para no depender de archivos externos) === -->
+  <script>
+    // === CURSOR PERSONALIZADO ===
+    document.addEventListener('DOMContentLoaded', () => {
+      const dot = document.getElementById('cursorNeb');
+      const trail = document.getElementById('cursorNebTrail');
+      
+      if (!dot || !trail) return;
+
+      let mouse = { x: innerWidth / 2, y: innerHeight / 2 };
+      let pos = { x: mouse.x, y: mouse.y };
+
+      document.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        dot.style.left = mouse.x + 'px';
+        dot.style.top = mouse.y + 'px';
+      });
+
+      function lerp(a, b, n) {
+        return (1 - n) * a + n * b;
+      }
+
+      function raf() {
+        pos.x = lerp(pos.x, mouse.x, 0.12);
+        pos.y = lerp(pos.y, mouse.y, 0.12);
+        trail.style.left = pos.x + 'px';
+        trail.style.top = pos.y + 'px';
+        requestAnimationFrame(raf);
+      }
+
+      raf();
+
+      const hoverEls = document.querySelectorAll('a, button, .hover-card, .progress-bar, nav a, .soft-skill-card, .card');
+      hoverEls.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          dot.style.transform = 'translate(-50%, -50%) scale(1.9)';
+          trail.style.transform = 'translate(-50%, -50%) scale(1.08)';
+        });
+        el.addEventListener('mouseleave', () => {
+          dot.style.transform = 'translate(-50%, -50%) scale(1)';
+          trail.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+      });
+    });
+  </script>
+
+  <script>
+    // === FONDO DE PARTÍCULAS (con tsParticles desde CDN) ===
+    const particlesScript = document.createElement('script');
+    particlesScript.src = 'https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js';
+    particlesScript.onload = () => {
+      tsParticles.load('particles-js', {
+        fpsLimit: 60,
+        particles: {
+          number: { value: 80, density: { enable: true, area: 800 } },
+          color: { value: ['#4cafef', '#a64dff', '#4dff88', '#ff4da6', '#ffd24d'] },
+          shape: { type: 'circle' },
+          opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
+          size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.5 } },
+          move: { enable: true, speed: 1.5, direction: 'none', random: true, straight: false, outModes: { default: 'out' } },
+          links: { enable: true, distance: 120, color: '#ffffff', opacity: 0.2, width: 1 }
+        },
+        interactivity: {
+          detectsOn: 'canvas',
+          events: {
+            onHover: { enable: true, mode: 'grab' },
+            onClick: { enable: true, mode: 'push' },
+            resize: true
+          },
+          modes: {
+            grab: { distance: 140, links: { opacity: 0.4 } },
+            push: { quantity: 4 }
+          }
+        },
+        detectRetina: true
+      });
+    };
+    document.head.appendChild(particlesScript);
+  </script>
+
+  <!-- Tus otros scripts (skills, etc.) -->
+  <script type="module" src="/src/scripts/skills.js"></script>
+  <script type="module" src="/src/scripts/habilidades.js"></script>
+</BaseLayout>

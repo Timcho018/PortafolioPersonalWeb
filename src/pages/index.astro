@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/Base.astro';
+---
+
+<BaseLayout title="Home">
+  <link rel="stylesheet" href="/src/styles/index.css" />
+
+  <!-- LOADER DE EXPERIENCIA — ESTILO TERMINAL HACKER -->
+  <div id="experience-style-loader" class="loader">
+    <div class="terminal">
+      <div class="terminal-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="title">system@jimmy</span>
+      </div>
+      <div class="terminal-body">
+        <div class="line">> Iniciando núcleo del sistema...</div>
+        <div class="line">> Cargando identidad digital...</div>
+        <div class="line auth">[██████████] 100% <span class="blink">_</span></div>
+        <div class="line">> identity: <span class="highlight">JIMMY</span></div>
+        <div class="line final">> Estado: <span class="online">ONLINE</span></div>
+      </div>
+    </div>
+    <div class="glitch-overlay"></div>
+  </div>
+
+  <section class="home" id="home-content" style="opacity: 0;">
+    <div class="home-content">
+      <h1>Hola, soy <span>Jimmy</span></h1>
+      <h3 class="typing-text">Me apasiona la <span id="typed-word"></span></h3>
+      <p>
+        Soy estudiante de Ingeniería de Sistemas y estoy construyendo mi camino
+        profesional con dedicación y curiosidad. Me gusta asumir retos que me
+        permitan aprender y crecer cada día.
+      </p>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/jimmy-javier-ricce-meza-168367333" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Timcho018" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+      <a href="/sobremi" class="btn">Conóceme más</a>
+    </div>
+    <div class="home-img">
+      <div class="img-border">
+        <img src="/img/perfil.png" alt="Foto perfil">
+      </div>
+    </div>
+  </section>
+
+  <div class="cursor"></div>
+  <div class="cursor-trail"></div>
+
+  <script type="module" src="/src/scripts/cursor.js"></script>
+  <script type="module" src="/src/scripts/index.js"></script>
+  <script>
+    const words = ["Tecnología", "Programación", "Ingeniería", "Innovación", "Informática"];
+    let i = 0;
+    const span = document.getElementById("typed-word");
+    if (span) {
+      setInterval(() => {
+        span.textContent = words[i];
+        i = (i + 1) % words.length;
+      }, 2000);
+    }
+  </script>
+</BaseLayout>

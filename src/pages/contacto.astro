@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/Base.astro';
+---
+
+<BaseLayout title="Contacto">
+  <link rel="stylesheet" href="/src/styles/contacto.css" />
+
+  <!-- FONDO DE PARTÍCULAS -->
+  <div id="particles-js"></div>
+
+  <!-- LOADER MODULAR 3D -->
+  <div id="modular-loader">
+    <div class="letter-grid" id="letter-grid"></div>
+  </div>
+
+  <!-- CURSOR PERSONALIZADO -->
+  <div id="cursorNeb" class="cursor-dot"></div>
+  <div id="cursorNebTrail" class="cursor-trail"></div>
+
+  <main class="main-contact" id="contact-content" style="opacity: 0;">
+    <div class="wrap container">
+      <div class="card-3d">
+        <div class="panel left-panel">
+          <div class="panel-content">
+            <h1 class="title">Comunicate conmigo</h1>
+            <p class="lead">
+              Soy estudiante de Ingeniería de Sistemas y estoy buscando oportunidades para aprender y crecer. Si tienes alguna idea o proyecto, me encantaría colaborar y dar lo mejor de mí.
+            </p>
+            <ul class="contact-list list-unstyled">
+              <li><i class="fa-solid fa-envelope"></i> <a href="mailto:timcho018@gmail.com">timcho018@gmail.com</a></li>
+              <li><i class="fa-solid fa-phone"></i> <a href="tel:+51986620943">+51 986 620 943</a></li>
+              <li><i class="fa-solid fa-location-dot"></i> Junin, Perú</li>
+            </ul>
+            <div class="bubbles mt-4">
+              <a class="bubble" href="https://www.linkedin.com/in/jimmy-javier-ricce-meza-168367333" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+              <a class="bubble" href="https://github.com/Timcho018" target="_blank" aria-label="GitHub" rel="noopener"><i class="fab fa-github"></i></a>
+            </div>
+            <div class="small-note mt-4">
+              <span>Busco oportunidades de colaboración para crecer y aprender</span>
+            </div>
+          </div>
+        </div>
+        <div class="panel right-panel">
+          <div class="panel-content form-wrap">
+            <h2 class="form-title">Envíame un mensaje</h2>
+            <form id="contactForm" novalidate>
+              <div class="row gx-2">
+                <div class="col-md-6 mb-3">
+                  <input id="name" name="name" class="input-ghost form-control" placeholder="Nombre" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <input id="email" name="email" type="email" class="input-ghost form-control" placeholder="Correo" required>
+                </div>
+              </div>
+              <div class="mb-3">
+                <textarea id="message" name="message" class="input-ghost form-control" rows="5" placeholder="Mensaje" required></textarea>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <button id="sendBtn" type="button" class="send-btn">
+                  <span class="send-label">Mantener para enviar</span>
+                  <span class="send-progress"></span>
+                </button>
+                <div id="sendHint" class="ms-auto text-muted small">Presiona por 1 segundo</div>
+              </div>
+            </form>
+            <div id="sentToast" class="toast-notice" role="status" aria-live="polite">
+              <i class="fa-solid fa-check"></i> Mensaje enviado — te respondo pronto.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="errorToast" class="toast" role="alert" aria-live="assertive"></div>
+  <div id="successToast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- SOLO UN SCRIPT: contacto.js (con loader + cursor + partículas) -->
+  <script type="module" src="/src/scripts/contacto.js"></script>
+</BaseLayout>

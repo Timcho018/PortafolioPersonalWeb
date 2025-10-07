@@ -1,0 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap");
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #4cafef;
+  --secondary: #a64dff;
+  --accent: #00f7ff;
+  --accent2: #4dff88;
+  --bg: #09090f;
+  --text: #ffffff;
+  --glass: rgba(255, 255, 255, 0.06);
+  --terminal-bg: #0a0f14;
+}
+
+html { font-size: 62.5%; }
+body {
+  background: linear-gradient(120deg, #0a0a12, #0d0d1a);
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* LOADER CIBERPUNK */
+#cyber-loader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--terminal-bg);
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.terminal {
+  width: 90%;
+  max-width: 800px;
+  background: rgba(5, 10, 15, 0.95);
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  border-radius: 8px;
+  box-shadow:
+    0 0 30px rgba(0, 247, 255, 0.2),
+    inset 0 0 20px rgba(0, 0, 0, 0.8);
+  font-family: 'Space Mono', monospace;
+  color: #00f7ff;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  overflow: hidden;
+  position: relative;
+}
+
+.terminal-header {
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+}
+
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+.title {
+  margin-left: 12px;
+  font-size: 1.3rem;
+  color: #a0a0a0;
+}
+
+.terminal-body {
+  padding: 24px;
+  position: relative;
+}
+
+.line {
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.auth {
+  color: #4dff88;
+  position: relative;
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+.highlight {
+  color: #ff2a6d;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 42, 109, 0.7);
+}
+
+.glitch-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: transparent;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes lineIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes terminalGlitch {
+  0%, 100% { transform: translateX(0); opacity: 1; }
+  92% { transform: translateX(-2px); opacity: 0.8; }
+  93% { transform: translateX(2px); opacity: 0.9; }
+  94% { transform: translateX(-2px); }
+  95% { transform: translateX(2px); }
+  96% { transform: translateX(-1px); }
+  97% { transform: translateX(1px); }
+  98% { transform: translateX(0); }
+}
+
+@keyframes loaderExit {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Partículas */
+#particles-js {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Contenido (inicialmente invisible) */
+.content-container {
+  position: relative;
+  z-index: 10;
+  padding: 6rem 0 8rem;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* Resto del CSS (igual que antes, pero sin animaciones de entrada duplicadas) */
+.main-experiencia {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1400px;
+  width: 92%;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 5.2rem;
+  font-weight: 800;
+  margin-bottom: 5.5rem;
+  text-align: center;
+  letter-spacing: -1.2px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+.gradient-title {
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite, pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes pulseGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(76,175,239,0.6); }
+  50% { text-shadow: 0 0 35px rgba(166,77,255,0.9), 0 0 50px rgba(0,247,255,0.7); }
+}
+
+/* Tarjetas (sin animaciones de entrada aquí, ya que el loader se encarga) */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4.5rem;
+  margin-top: 2rem;
+}
+
+.exp-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.05);
+  overflow: hidden;
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+  padding: 3rem;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1.2);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+  will-change: transform;
+}
+
+.exp-card::before {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(76,175,239,0.2) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.exp-card:hover {
+  transform: translateY(-20px) rotateX(5deg) rotateY(5deg) scale(1.05);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.7), 0 0 25px rgba(76,175,239,0.5), inset 0 0 50px rgba(255,255,255,0.1);
+}
+.exp-card:hover::before { opacity: 1; }
+
+.icon-wrapper { margin-bottom: 1.6rem; }
+.icon-exp {
+  font-size: 3.6rem;
+  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.exp-card:hover .icon-exp {
+  transform: scale(1.6) rotate(10deg);
+  filter: drop-shadow(0 0 20px var(--accent));
+}
+
+.exp-title { font-size: 2.4rem; margin-bottom: .8rem; font-weight: 700; color: #fff; font-family: "Space Grotesk", sans-serif; }
+.exp-date { font-size: 1.55rem; color: #b8b8ff; margin-bottom: 1.4rem; font-weight: 500; }
+.exp-desc { font-size: 1.55rem; color: #d8d8ff; line-height: 1.7; max-width: 92%; margin: 0 auto; opacity: .96; }
+
+/* Cursor */
+.cursor-dot, .cursor-trail {
+  position: fixed;
+  top: 0; left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+.cursor-dot {
+  width: 12px;
+  height: 12px;
+  background: #00f7ff;
+  border: 2px solid #00f7ff;
+}
+.cursor-trail {
+  width: 50px;
+  height: 50px;
+  opacity: 0.6;
+  background: rgba(76, 175, 239, 0.2);
+  border: 2px solid rgba(76, 175, 239, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .terminal { width: 95%; font-size: 1.3rem; }
+  .terminal-body { padding: 18px; }
+  .title { font-size: 3.2rem; }
+  .exp-card { padding: 2.2rem; max-width: 380px; }
+}
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap");
+
+#modular-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  pointer-events: none;
+}
+
+.letter-grid {
+  display: flex;
+  gap: 6px;
+  perspective: 1000px;
+}
+
+.letter-block {
+  width: 60px;
+  height: 76px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.4rem;
+  font-weight: 700;
+  color: transparent;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.letter-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  border-radius: 5px;
+}
+
+.front { transform: rotateY(0deg); background: #ff9100; color: #000; }
+.back { transform: rotateY(180deg); background: #a64dff; color: #fff; }
+.top { transform: rotateX(90deg) translateZ(38px); background: #ff8400; color: #000; }
+.bottom { transform: rotateX(-90deg) translateZ(38px); background: #ff2a6d; color: #fff; }
+.left { transform: rotateY(-90deg) translateZ(30px); background: #d308c5; color: #000; }
+.right { transform: rotateY(90deg) translateZ(30px); background: #1fdd35; color: #000; }
+
+@media (max-width: 991px) {
+  .letter-block { width: 50px; height: 64px; font-size: 2.8rem; }
+}
+@media (max-width: 768px) {
+  .letter-block { width: 44px; height: 58px; font-size: 2.4rem; }
+}
